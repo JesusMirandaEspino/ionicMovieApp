@@ -1,0 +1,16 @@
+ <ion-slides mode="ios" scrollbar="ios"  [options]="slideOpts" >
+    <ion-slide *ngFor="let movie of listMovies">
+      <ion-card>
+          <ion-card-header>
+
+          </ion-card-header>
+
+
+          <ion-card-content>
+              <img  class="poster" [src]="movie.backdrop_path | imgResp" alt="">
+        </ion-card-content>
+
+
+      </ion-card>
+    </ion-slide>
+  </ion-slides>

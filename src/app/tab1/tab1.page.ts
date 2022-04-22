@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { RestMoviesDB, Movies } from '../interfaces/interfaces';
 @Component({
@@ -8,7 +8,8 @@ import { RestMoviesDB, Movies } from '../interfaces/interfaces';
 })
 export class Tab1Page implements OnInit {
 
-  public listMovies: Movies[] = [];
+
+  @Output() listMovies: Movies[] = [];
 
   constructor( private moviesService: MoviesService ) {
 
