@@ -9,6 +9,10 @@ import { Movies } from '../../interfaces/interfaces';
 export class SlideshowBackdropComponent implements OnInit {
 
   @Input() listMovies: Movies[] = [];
+    public slideOpts = {
+    slidesPerView: 2.2,
+    freeMode: true
+    }
 
   constructor() {
     // code

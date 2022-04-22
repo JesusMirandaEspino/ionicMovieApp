@@ -8,13 +8,12 @@ import { Movies } from '../../interfaces/interfaces';
 })
 export class SlideshowPosteComponent implements OnInit {
 
- @Input() listMovies: Movies[] = [];
+  @Input() listMovies: Movies[] = [];
 
- public slideOpts = {
-  slidesPerView: 3.3,
-  freeMode: true
-
-  }
+  public slideOpts = {
+    slidesPerView: 3.3,
+    freeMode: true
+    }
 
   constructor() {
     // code

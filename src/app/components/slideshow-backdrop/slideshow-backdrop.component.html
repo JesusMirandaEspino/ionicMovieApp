@@ -1,4 +1,4 @@
- <ion-slides mode="ios" scrollbar="ios">
+ <ion-slides mode="ios" scrollbar="ios" [options]="slideOpts">
     <ion-slide *ngFor="let movie of listMovies">
       <ion-card>
         <img [src]="movie.backdrop_path | imgResp" alt="">
