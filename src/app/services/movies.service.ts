@@ -37,9 +37,23 @@ export class MoviesService {
 
   getFeatures(){
 
+    const hoy = new Date();
+    const ultimoDia = new Date( hoy.getFullYear(), hoy.getMonth() + 1, 0 ).getDate();
+    const mes = hoy.getMonth() + 1;
+    let mesString;
 
+    if( mes < 10 ){
+      mesString = '0' + mes;
+    }else{
+      mesString = mes;
+    }
 
-    return this.getQuery<RestMoviesDB>( `&${this.queries.prYDg}=2014-09-15&${this.queries.pryDL}=2014-10-22` );
+    const inicio  = `${hoy.getFullYear()}-${mesString}-01`;
+    const fin     = `${hoy.getFullYear()}-${mesString}-${ultimoDia}`;
+    console.log( inicio );
+    console.log( fin );
+
+    return this.getQuery<RestMoviesDB>( `&${this.queries.prYDg}=${inicio}&${this.queries.pryDL}=${fin}` );
 
   }
 
