@@ -23,8 +23,8 @@ export class Tab1Page implements OnInit {
     });
 
 
-    this.moviesService.getPopulares().subscribe( (movies: Movies[]) => {
-      this.populares = movies;
+    this.moviesService.getPopulares().subscribe( (movies:any) => {
+      this.populares = movies.results;
     });
 
   }
