@@ -10,6 +10,7 @@ export class Tab1Page implements OnInit {
 
 
   @Output() listMovies: Movies[] = [];
+  public populares: Movies[] = [];
 
   constructor( private moviesService: MoviesService ) {
 
@@ -20,6 +21,12 @@ export class Tab1Page implements OnInit {
         this.listMovies = movies.results;
         console.log(this.listMovies);
     });
+
+
+    this.moviesService.getPopulares().subscribe( (movies: Movies[]) => {
+      this.populares = movies;
+    });
+
   }
 
 }

@@ -58,4 +58,12 @@ export class MoviesService {
   }
 
 
+  getPopulares(){
+
+    const queries = `&sort_by=sort_by`;
+
+    return this.getQuery<RestMoviesDB>( queries );
+  }
+
+
 }
