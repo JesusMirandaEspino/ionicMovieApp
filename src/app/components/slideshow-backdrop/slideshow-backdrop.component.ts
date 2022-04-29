@@ -16,7 +16,7 @@ export class SlideshowBackdropComponent implements OnInit {
     freeMode: true
     }
 
-  constructor( private ModalController:ModalController  ) {
+  constructor( private modalController:ModalController  ) {
     // code
   }
 
@@ -25,13 +25,17 @@ export class SlideshowBackdropComponent implements OnInit {
   }
 
 
-  async verDetalle(id: string){
-    const modal = await this.ModalController.create(  {
+  async verDetalle(id: number){
+    const modal = await this.modalController.create(  {
       component: DetallesComponent,
       componentProps: {
         id
       }
     });
+
+    modal.present();
+
+
   }
 
 }

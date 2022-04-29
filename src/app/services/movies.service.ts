@@ -62,9 +62,13 @@ export class MoviesService {
   getPopulares(){
 
     this.popularesPages++;
-
     const queries = `&sort_by=sort_by&page=${this.popularesPages}`;
+    return this.getQuery<RestMoviesDB>( queries );
+  }
 
+
+  getMovieById(id:string){
+    const queries = `&id=${id}`;
     return this.getQuery<RestMoviesDB>( queries );
   }
 
