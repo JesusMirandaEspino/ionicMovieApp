@@ -12,6 +12,7 @@ export class MoviesService {
   private ApiKey: string = environment.ApiKey;
   private language:string = environment.language;
   private imgLanguage: string = environment.imgLanguage;
+  private popularesPages: number = 0;
 
   private queries = {
     prYDg: 'primary_release_date.gte',
@@ -60,7 +61,9 @@ export class MoviesService {
 
   getPopulares(){
 
-    const queries = `&sort_by=sort_by`;
+    this.popularesPages++;
+
+    const queries = `&sort_by=sort_by&page=${this.popularesPages}`;
 
     return this.getQuery<RestMoviesDB>( queries );
   }
