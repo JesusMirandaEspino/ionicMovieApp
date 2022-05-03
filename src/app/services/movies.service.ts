@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Movie, RestMoviesDB } from '../interfaces/interfaces';
+import { Movie, MovieCredits, RestMoviesDB } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -92,7 +92,7 @@ export class MoviesService {
 
   getPeliculaCredits( id: string ){
     const queries = `/movie/${id}/credits?api_key=${this.ApiKey}`;
-    return this.getQuery2<Movie>( queries );
+    return this.getQuery2<MovieCredits>( queries );
 
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
