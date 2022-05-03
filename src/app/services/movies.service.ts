@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { RestMoviesDB } from '../interfaces/interfaces';
+import { Movie, RestMoviesDB } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,15 @@ export class MoviesService {
 
   private getQuery<T>( valueQuery: string ){
     let query = `${this.urlBase}discover/movie?${this.queries.key}=${this.ApiKey}&${this.queries.lang}=${this.language}&${this.queries.imgLang}=${this.imgLanguage}`;
+    query += valueQuery;
+
+    return this.http.get(query);
+
+  }
+
+
+    private getQuery2<T>( valueQuery: string ){
+    let query = `${this.urlBase}`;
     query += valueQuery;
 
     return this.http.get(query);
@@ -70,6 +79,23 @@ export class MoviesService {
   getMovieById(id:string){
     const queries = `&id=${id}`;
     return this.getQuery<RestMoviesDB>( queries );
+  }
+
+  getPeliculaDetalle( id: string ){
+    const queries = `/movie/${id}?api_key=${this.ApiKey}`;
+    return this.getQuery2<Movie>( queries );
+
+// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+
+  }
+
+
+  getPeliculaCredits( id: string ){
+    const queries = `/movie/${id}/credits?api_key=${this.ApiKey}`;
+    return this.getQuery2<Movie>( queries );
+
+// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+
   }
 
 

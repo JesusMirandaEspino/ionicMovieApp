@@ -15,9 +15,12 @@ export class DetallesComponent implements OnInit {
   }
 
   ngOnInit() {
-    // code
 
-    this.moviesService.getMovieById(this.id).subscribe( resp => {
+    this.moviesService.getPeliculaDetalle(this.id).subscribe( resp => {
+      console.log(resp)
+    });
+
+    this.moviesService.getPeliculaCredits(this.id).subscribe( resp => {
       console.log(resp)
     });
 
