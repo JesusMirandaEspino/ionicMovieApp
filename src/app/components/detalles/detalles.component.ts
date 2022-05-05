@@ -44,7 +44,7 @@ export class DetallesComponent implements OnInit {
 
 
   favoritos(){
-
+    // code
   }
 
 }
