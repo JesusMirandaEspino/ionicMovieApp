@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Movie } from '../../interfaces/interfaces';
+import { Cast, Movie, MovieCredits } from '../../interfaces/interfaces';
 import { MoviesService } from '../../services/movies.service';
 
 @Component({
@@ -11,6 +11,8 @@ export class DetallesComponent implements OnInit {
 
   @Input() id: string;
   public MovieDetalle: Movie = {};
+  public actors: Cast[] = []
+  public ocultar: number = 150;
 
   constructor( private moviesService: MoviesService ) {
     // code
@@ -23,8 +25,8 @@ export class DetallesComponent implements OnInit {
       console.log(resp)
     });
 
-    this.moviesService.getPeliculaCredits(this.id).subscribe( resp => {
-      console.log(resp)
+    this.moviesService.getPeliculaCredits(this.id).subscribe( (resp: MovieCredits) => {
+      this.actors = resp.cast;
     });
 
 
