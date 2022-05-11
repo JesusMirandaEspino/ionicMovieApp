@@ -6,6 +6,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { SlideshowPosteComponent } from './slideshow-poste/slideshow-poste.component';
 import { SlideShowParesComponent } from './slide-show-pares/slide-show-pares.component';
 import { DetallesComponent } from './detalles/detalles.component';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 
 
@@ -14,7 +15,8 @@ import { DetallesComponent } from './detalles/detalles.component';
   imports: [
     CommonModule,
     IonicModule,
-    PipesModule
+    PipesModule,
+    IonicStorageModule
 
   ],
   exports: [

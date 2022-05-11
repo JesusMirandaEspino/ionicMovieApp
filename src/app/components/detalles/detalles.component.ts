@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { DataLocalService } from '../../services/data-local.service';
 import { Cast, Movie, MovieCredits } from '../../interfaces/interfaces';
 import { MoviesService } from '../../services/movies.service';
 
@@ -21,7 +22,9 @@ export class DetallesComponent implements OnInit {
     spacebetween: -5
   }
 
-  constructor( private moviesService: MoviesService, public modalCtrl: ModalController ) {
+  constructor(  private moviesService: MoviesService,
+                public modalCtrl: ModalController,
+                public dataLocalService: DataLocalService ) {
     // code
   }
 
@@ -29,7 +32,7 @@ export class DetallesComponent implements OnInit {
 
     this.moviesService.getPeliculaDetalle(this.id).subscribe( resp => {
       this.MovieDetalle = resp;
-      console.log(resp)
+      //console.log(resp)
     });
 
     this.moviesService.getPeliculaCredits(this.id).subscribe( (resp: MovieCredits) => {
@@ -45,6 +48,8 @@ export class DetallesComponent implements OnInit {
 
   favoritos(){
     // code
+    this.dataLocalService.saveMovie( this.MovieDetalle );
+
   }
 
 }
