@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Movie, MovieCredits, RestMoviesDB } from '../interfaces/interfaces';
+import { Movie, MovieCredits, OneMovie, RestMoviesDB } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -95,8 +95,16 @@ export class MoviesService {
     return this.getQuery2<MovieCredits>( queries );
 
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-
   }
+
+
+  getPelicula( movie: string ){
+    const queries = `search/movie?api_key=${this.ApiKey}&query=${movie}`;
+    return this.getQuery2<OneMovie[]>( queries );
+
+// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+  }
+
 
 
 }

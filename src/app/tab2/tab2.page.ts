@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +12,7 @@ export class Tab2Page {
   public ideas: string[] = [ 'spiderman', 'batman', 'superman' ];
 
 
-  constructor() {
+  constructor(  private moviesService: MoviesService  ) {
     // code
   }
 
@@ -23,6 +24,9 @@ export class Tab2Page {
 
   getIdea(idea: string){
     this.textoBuscar = idea;
+    this.moviesService.getPelicula( idea ).subscribe( movies => {
+      console.log( movies );
+    });
   }
 
 }

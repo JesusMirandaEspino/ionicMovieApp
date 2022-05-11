@@ -105,3 +105,34 @@ export interface Cast {
     department?:          string;
     job?:                 string;
 }
+
+
+
+export interface OneMovie {
+    page:          number;
+    results:       Result[];
+    total_pages:   number;
+    total_results: number;
+}
+
+export interface Result {
+    adult:             boolean;
+    backdrop_path:     null | string;
+    genre_ids:         number[];
+    id:                number;
+    original_language: OriginalLanguageMovie;
+    original_title:    string;
+    overview:          string;
+    popularity:        number;
+    poster_path:       null | string;
+    release_date:      string;
+    title:             string;
+    video:             boolean;
+    vote_average:      number;
+    vote_count:        number;
+}
+
+export enum OriginalLanguageMovie {
+    Eng = "en",
+    It = "it",
+}
