@@ -110,12 +110,12 @@ export interface Cast {
 
 export interface OneMovie {
     page:          number;
-    results:       Result[];
+    results:       ResultMovies[];
     total_pages:   number;
     total_results: number;
 }
 
-export interface Result {
+export interface ResultMovies {
     adult:             boolean;
     backdrop_path:     null | string;
     genre_ids:         number[];

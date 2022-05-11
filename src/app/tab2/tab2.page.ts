@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OneMovie, ResultMovies } from '../interfaces/interfaces';
 import { MoviesService } from '../services/movies.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class Tab2Page {
 
   public textoBuscar: string = '';
   public ideas: string[] = [ 'spiderman', 'batman', 'superman' ];
+  public movies: ResultMovies[] = [];
 
 
   constructor(  private moviesService: MoviesService  ) {
@@ -19,13 +21,13 @@ export class Tab2Page {
 
   buscar(event: any){
     const valor = event.detail.value;
-    console.log(valor);
   }
 
   getIdea(idea: string){
     this.textoBuscar = idea;
-    this.moviesService.getPelicula( idea ).subscribe( movies => {
-      console.log( movies );
+    this.moviesService.getPelicula( idea ).subscribe(( movies: any) => {
+      this.movies = movies.results;
+      console.log(this.movies);
     });
   }
 

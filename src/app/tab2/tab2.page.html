@@ -27,7 +27,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list>
+  <ion-list *ngIf="movies.length === 0">
     <ion-list-header>
       <ion-label>Ideas</ion-label>
     </ion-list-header>
@@ -37,6 +37,28 @@
     </ion-item>
 
   </ion-list>
+
+
+  <ion-grid fixed>
+    <ion-row>
+
+      <ion-col *ngFor="let movie of movies" size="6">
+        <ion-card>
+          <img [src]="movie.poster_path | imgResp" alt="">
+
+          <ion-card-header>
+            <ion-card-subtitle>{{ (movie.release_date) ? movie.release_date : 'Sin fecha' }}</ion-card-subtitle>
+            <ion-card-title>{{ movie.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>
