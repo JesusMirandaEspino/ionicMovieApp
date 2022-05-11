@@ -19,7 +19,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-grid fixed>
+  <ion-grid *ngIf="buscando" fixed>
     <ion-row>
       <ion-col text-center>
         <ion-spinner name="bubbles"></ion-spinner>
@@ -43,7 +43,7 @@
     <ion-row>
 
       <ion-col *ngFor="let movie of movies" size="6">
-        <ion-card>
+        <ion-card (click)="detalle(movie.id)" >
           <img [src]="movie.poster_path | imgResp" alt="">
 
           <ion-card-header>

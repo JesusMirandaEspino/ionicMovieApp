@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { DetallesComponent } from '../components/detalles/detalles.component';
 import { OneMovie, ResultMovies } from '../interfaces/interfaces';
 import { MoviesService } from '../services/movies.service';
 
@@ -12,23 +14,46 @@ export class Tab2Page {
   public textoBuscar: string = '';
   public ideas: string[] = [ 'spiderman', 'batman', 'superman' ];
   public movies: ResultMovies[] = [];
+  public buscando: boolean = false;
 
 
-  constructor(  private moviesService: MoviesService  ) {
+  constructor(  private moviesService: MoviesService, private modalController: ModalController  ) {
     // code
   }
 
 
   buscar(event: any){
-    const valor = event.detail.value;
+    const valor:string = event.detail.value;
+
+    if( valor == '' || valor.length == 0 ){
+      this.buscando = false;
+      this.movies = [];
+      return;
+    }
+
+    this.buscando = true;
+    this.moviesService.getPelicula( valor ).subscribe(( movies: any) => {
+      this.movies = movies.results;
+      this.buscando = false;
+    });
+
+
   }
 
   getIdea(idea: string){
     this.textoBuscar = idea;
-    this.moviesService.getPelicula( idea ).subscribe(( movies: any) => {
-      this.movies = movies.results;
-      console.log(this.movies);
+  }
+
+
+  async detalle(id:any){
+        const modal = await this.modalController.create(  {
+      component: DetallesComponent,
+      componentProps: {
+        id
+      }
     });
+
+    modal.present();
   }
 
 }
