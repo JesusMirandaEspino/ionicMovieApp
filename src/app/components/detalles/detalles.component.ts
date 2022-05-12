@@ -15,6 +15,7 @@ export class DetallesComponent implements OnInit {
   public MovieDetalle: Movie = {};
   public actors: Cast[] = []
   public ocultar: number = 150;
+  public startfavorite = 'start-outline';
 
   slideOptActor = {
     slidesPerView: 3.3,
@@ -28,7 +29,13 @@ export class DetallesComponent implements OnInit {
     // code
   }
 
-  ngOnInit() {
+    ngOnInit() {
+
+    this.dataLocalService.existePelicula( this.id ).then( resp => {
+        this.startfavorite = (resp) ? 'star' : 'star-outline';
+    });
+
+
 
     this.moviesService.getPeliculaDetalle(this.id).subscribe( resp => {
       this.MovieDetalle = resp;
@@ -48,7 +55,8 @@ export class DetallesComponent implements OnInit {
 
   favoritos(){
     // code
-    this.dataLocalService.saveMovie( this.MovieDetalle );
+    const exist = this.dataLocalService.saveMovie( this.MovieDetalle );
+    this.startfavorite = (exist) ? 'star' : 'star-outline'
 
   }
 

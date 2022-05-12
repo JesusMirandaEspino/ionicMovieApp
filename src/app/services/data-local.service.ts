@@ -8,12 +8,12 @@ import { ToastController } from '@ionic/angular';
 })
 export class DataLocalService {
 
-  constructor( private storage: Storage, public toastController: ToastController   ) {
+  constructor( public storage: Storage, public toastController: ToastController   ) {
     this.initDB();
     this.cargarFavoritos();
   }
 
-  private _storage: Storage | null = null;
+  public _storage: Storage | null = null;
   movies: Movie[] = [];
 
   async initDB(){
@@ -43,6 +43,10 @@ export class DataLocalService {
 
     this.presentToast(mensaje);
     this.storage.set('movies', this.movies);
+
+    return !exist;
+
+
   }
 
   async presentToast(mensaje:string) {
@@ -55,18 +59,18 @@ export class DataLocalService {
 
 
   async cargarFavoritos(){
-    const favoritesMovies = await this._storage.get('movies');
+    const favoritesMovies = await this.storage.get('movies');
     this.movies = favoritesMovies || [];
     return this.movies;
 
   }
 
 
-  async existePeliculas( id: string ){
+  async existePelicula( id: string ){
 
     const getId = Number(id);
     await this.cargarFavoritos();
-    const existe = this.movies.find( mov =>  mov.id == getId );
+    const existe = this.movies.find( mov =>  mov.id === getId );
 
     return (existe) ? true : false;
 
