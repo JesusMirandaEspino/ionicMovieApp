@@ -10,6 +10,7 @@ export class DataLocalService {
 
   constructor( private storage: Storage, public toastController: ToastController   ) {
     this.initDB();
+    this.cargarFavoritos();
   }
 
   private _storage: Storage | null = null;
@@ -52,5 +53,24 @@ export class DataLocalService {
     toast.present();
   }
 
+
+  async cargarFavoritos(){
+    const favoritesMovies = await this._storage.get('movies');
+    this.movies = favoritesMovies || [];
+    return this.movies;
+
+  }
+
+
+  async existePeliculas( id: string ){
+
+    const getId = Number(id);
+    await this.cargarFavoritos();
+    const existe = this.movies.find( mov =>  mov.id == getId );
+
+    return (existe) ? true : false;
+
+
+  }
 
 }
