@@ -136,3 +136,14 @@ export enum OriginalLanguageMovie {
     Eng = "en",
     It = "it",
 }
+
+
+
+export interface MovieGenre {
+    genres: Genre[];
+}
+
+export interface Genre {
+    id:   number;
+    name: string;
+}

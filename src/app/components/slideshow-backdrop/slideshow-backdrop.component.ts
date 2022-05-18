@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Movies } from '../../interfaces/interfaces';
+import { Movie } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { DetallesComponent } from '../detalles/detalles.component';
 
@@ -10,7 +10,7 @@ import { DetallesComponent } from '../detalles/detalles.component';
 })
 export class SlideshowBackdropComponent implements OnInit {
 
-  @Input() listMovies: Movies[] = [];
+  @Input() listMovies: Movie[] = [];
     public slideOpts = {
     slidesPerView: 2.2,
     freeMode: true
