@@ -58,6 +58,10 @@ export interface Movie {
     vote_count?:            number;
 }
 
+export interface MovieGenre {
+    genres: Genre[];
+}
+
 export interface Genre {
     id:   number;
     name: string;
@@ -138,12 +142,3 @@ export enum OriginalLanguageMovie {
 }
 
 
-
-export interface MovieGenre {
-    genres: Genre[];
-}
-
-export interface Genre {
-    id:   number;
-    name: string;
-}

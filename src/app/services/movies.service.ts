@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Movie, MovieCredits, OneMovie, RestMoviesDB } from '../interfaces/interfaces';
+import { Genre, Movie, MovieCredits, MovieGenre, OneMovie, RestMoviesDB } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,7 @@ export class MoviesService {
 
   private iniDate:Date = new Date();
   private EndDate:Date = new Date();
+  public genres: MovieGenre;
 
   constructor( private http: HttpClient ) { }
 
@@ -105,6 +106,18 @@ export class MoviesService {
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
   }
 
+getGenres(): Promise<MovieGenre>{
+  const queries = `/genre/movie/list?api_key=${this.ApiKey}&language=es&include_image_language=e`;
+
+  return new Promise(  (resolve) => {
+      this.getQuery2<MovieGenre[]>( queries ).subscribe( (resp: MovieGenre) => {
+      this.genres = resp;
+
+      resolve(this.genres)
+        });
+  });
+
+}
 
 
 }
