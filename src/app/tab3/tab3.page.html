@@ -1,27 +1,33 @@
-<<ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Favorites
     </ion-title>
   </ion-toolbar>
-
-
-
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-
-
-  <div *ngFor="let gen of genres" >
-        <ion-grid fixed>
+  <div *ngFor="let gen of favoritosGeneros" >
+        <ion-grid fixed *ngIf="gen.pelis.length > 0">
           <ion-row>
             <ion-col   size="12">
-                  <h4> {{ gen.name }} </h4>
+                  <h4> {{ gen.genero }} </h4>
             </ion-col>
           </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <app-slideshow-backdrop [listMovies]="gen.pelis" ></app-slideshow-backdrop>
+            </ion-col>
+          </ion-row>
+
         </ion-grid>
-<app-slideshow-backdrop [listMovies]="movies" ></app-slideshow-backdrop>
+
+
+
+
+
   </div>
 
 
@@ -29,5 +35,4 @@
 
 
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>
