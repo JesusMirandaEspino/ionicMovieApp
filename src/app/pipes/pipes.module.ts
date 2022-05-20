@@ -17,7 +17,8 @@ import { FiltroImagenPipe } from './filtro-imagen.pipe';
   ],
   exports: [
     ImgRespPipe,
-    ParesPipe
+    ParesPipe,
+    FiltroImagenPipe
   ]
 })
 export class PipesModule { }
